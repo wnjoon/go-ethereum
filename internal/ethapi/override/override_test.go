@@ -32,8 +32,10 @@ import (
 type precompileContract struct{}
 
 func (p *precompileContract) RequiredGas(input []byte) uint64 { return 0 }
-
-func (p *precompileContract) Run(input []byte) ([]byte, error) { return nil, nil }
+func (p *precompileContract) Run(evm *vm.EVM, contract *vm.Contract, readOnly bool) ([]byte, error) {
+	return nil, nil
+}
+func (p *precompileContract) Address() common.Address { return common.Address{} }
 
 func TestStateOverrideMovePrecompile(t *testing.T) {
 	db := state.NewDatabase(triedb.NewDatabase(rawdb.NewMemoryDatabase(), nil), nil)
